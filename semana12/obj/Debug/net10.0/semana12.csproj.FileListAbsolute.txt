@@ -1,0 +1,15 @@
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\bin\Debug\net10.0\semana12.exe
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\bin\Debug\net10.0\semana12.deps.json
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\bin\Debug\net10.0\semana12.runtimeconfig.json
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\bin\Debug\net10.0\semana12.dll
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\bin\Debug\net10.0\semana12.pdb
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.AssemblyInfoInputs.cache
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.AssemblyInfo.cs
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.sourcelink.json
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.dll
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\refint\semana12.dll
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.pdb
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\semana12.genruntimeconfig.cache
+C:\Users\USER\Documents\GitHub\2026-ESTRUCTURA-DE-DATOS-MANUEL-MANZABA\semana12\obj\Debug\net10.0\ref\semana12.dll
