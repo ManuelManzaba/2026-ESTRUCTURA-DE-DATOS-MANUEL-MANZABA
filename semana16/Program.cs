@@ -1,63 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
 
-class Grafo
+class GrafoVuelos
 {
-    private Dictionary<string, List<string>> lista;
+    private Dictionary<string, List<(string destino, int costo)>> grafo;
 
-    public Grafo()
+    public GrafoVuelos()
     {
-        lista = new Dictionary<string, List<string>>();
+        grafo = new Dictionary<string, List<(string, int)>>();
     }
 
-    public void AgregarNodo(string nodo)
+    public void AgregarConexion(string origen, string destino, int costo)
     {
-        if (!lista.ContainsKey(nodo))
-            lista[nodo] = new List<string>();
-    }
+        if (!grafo.ContainsKey(origen))
+            grafo[origen] = new List<(string, int)>();
 
-    public void AgregarArista(string origen, string destino)
-    {
-        lista[origen].Add(destino);
-        lista[destino].Add(origen);
+        grafo[origen].Add((destino, costo));
     }
 
     public void Mostrar()
     {
-        foreach (var nodo in lista)
+        foreach (var ciudad in grafo)
         {
-            Console.Write(nodo.Key + " -> ");
-            foreach (var vecino in nodo.Value)
+            Console.Write(ciudad.Key + " -> ");
+            foreach (var conexion in ciudad.Value)
             {
-                Console.Write(vecino + " ");
+                Console.Write($"{conexion.destino}(${conexion.costo}) ");
             }
             Console.WriteLine();
         }
     }
 
-    public void BFS(string inicio)
+    public void RutaMasCorta(string inicio)
     {
+        var distancias = new Dictionary<string, int>();
         var visitados = new HashSet<string>();
-        var cola = new Queue<string>();
 
-        cola.Enqueue(inicio);
-        visitados.Add(inicio);
+        foreach (var nodo in grafo.Keys)
+            distancias[nodo] = int.MaxValue;
 
-        Console.WriteLine("\nRecorrido BFS:");
+        distancias[inicio] = 0;
 
-        while (cola.Count > 0)
+        while (visitados.Count < grafo.Count)
         {
-            var actual = cola.Dequeue();
-            Console.Write(actual + " ");
+            string actual = null;
+            int menor = int.MaxValue;
 
-            foreach (var vecino in lista[actual])
+            foreach (var nodo in distancias)
             {
-                if (!visitados.Contains(vecino))
+                if (!visitados.Contains(nodo.Key) && nodo.Value < menor)
                 {
-                    visitados.Add(vecino);
-                    cola.Enqueue(vecino);
+                    menor = nodo.Value;
+                    actual = nodo.Key;
                 }
             }
+
+            if (actual == null) break;
+
+            visitados.Add(actual);
+
+            foreach (var vecino in grafo[actual])
+            {
+                int nueva = distancias[actual] + vecino.costo;
+
+                if (!distancias.ContainsKey(vecino.destino) || nueva < distancias[vecino.destino])
+                {
+                    distancias[vecino.destino] = nueva;
+                }
+            }
+        }
+
+        Console.WriteLine("\nCostos mínimos desde " + inicio + ":");
+        foreach (var d in distancias)
+        {
+            Console.WriteLine(d.Key + ": $" + d.Value);
         }
     }
 }
@@ -66,21 +82,17 @@ class Program
 {
     static void Main()
     {
-        Grafo g = new Grafo();
+        GrafoVuelos vuelos = new GrafoVuelos();
 
-        g.AgregarNodo("A");
-        g.AgregarNodo("B");
-        g.AgregarNodo("C");
-        g.AgregarNodo("D");
+        vuelos.AgregarConexion("Quito", "Guayaquil", 50);
+        vuelos.AgregarConexion("Quito", "Cuenca", 40);
+        vuelos.AgregarConexion("Cuenca", "Guayaquil", 30);
+        vuelos.AgregarConexion("Guayaquil", "Manta", 20);
 
-        g.AgregarArista("A", "B");
-        g.AgregarArista("A", "C");
-        g.AgregarArista("B", "D");
+        Console.WriteLine("Rutas disponibles:");
+        vuelos.Mostrar();
 
-        Console.WriteLine("Grafo:");
-        g.Mostrar();
-
-        g.BFS("A");
+        vuelos.RutaMasCorta("Quito");
 
         Console.ReadKey();
     }
