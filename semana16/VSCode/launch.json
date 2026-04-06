@@ -1,0 +1,57 @@
+import heapq
+
+grafo = {
+    "Quito": [("Guayaquil", 50), ("Cuenca", 40)],
+    "Cuenca": [("Guayaquil", 30), ("Loja", 60)],
+    "Guayaquil": [("Loja", 25)],
+    "Loja": [],
+    "configurations": [
+    
+    ]
+}
+
+def dijkstra(grafo, inicio):
+    distancias = {nodo: float('inf') for nodo in grafo}
+    anteriores = {nodo: None for nodo in grafo}
+    distancias[inicio] = 0
+    cola = [(0, inicio)]
+
+    while cola:
+        dist_actual, nodo_actual = heapq.heappop(cola)
+        if dist_actual > distancias[nodo_actual]:
+            continue
+        for vecino, peso in grafo[nodo_actual]:
+            nueva_dist = dist_actual + peso
+            if nueva_dist < distancias[vecino]:
+                distancias[vecino] = nueva_dist
+                anteriores[vecino] = nodo_actual
+                heapq.heappush(cola, (nueva_dist, vecino))
+    return distancias, anteriores
+
+def obtener_ruta(anteriores, destino):
+    ruta = []
+    actual = destino
+    while actual is not None:
+        ruta.insert(0, actual)
+        actual = anteriores[actual]
+    return ruta
+
+def buscar_ruta():
+    print("\n--- BUSCAR VUELO ---")
+    inicio = input("Origen (ej. Quito): ").strip().capitalize()
+    destino = input("Destino (ej. Loja): ").strip().capitalize()
+
+    if inicio not in grafo or destino not in grafo:
+        print("Error: Ciudad no encontrada.")
+        return
+
+    distancias, anteriores = dijkstra(grafo, inicio)
+    if distancias[destino] == float('inf'):
+        print("No hay ruta disponible.")
+    else:
+        ruta = obtener_ruta(anteriores, destino)
+        print(f"Ruta: {' -> '.join(ruta)}")
+        print(f"Costo: ${distancias[destino]}")
+
+if __name__ == "__main__":
+    buscar_ruta()
